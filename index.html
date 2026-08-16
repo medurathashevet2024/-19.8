@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדורת השבט - סדנאות יצירה בחומרים מהטבע</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Secular+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --forest-green: #1b3820;
+            --forest-mid: #2d5a37;
+            --forest-light: #f0f5f1;
+            --earth-brown: #4a3329;
+            --earth-light: #8c6d5e;
+            --campfire-orange: #e65c00;
+            --campfire-glow: #ff751a;
+            --sandy-bg: #faf6f0;
+            --text-dark: #1f2421;
+            --text-muted: #58635a;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 4px 15px rgba(27, 56, 32, 0.05);
+            --shadow-md: 0 12px 35px rgba(27, 56, 32, 0.08);
+            --shadow-lg: 0 20px 45px rgba(27, 56, 32, 0.14);
+        }
+
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: var(--sandy-bg);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo-text {
+            font-family: 'Secular One', sans-serif;
+        }
+
+        /* Header Navigation */
+        header {
+            background-color: rgba(27, 56, 32, 0.98);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 24px;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .brand-logo .logo-text {
+            color: var(--sandy-bg);
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #d4e2d5;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        nav a:hover { color: var(--white); }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(27, 56, 32, 0.55), rgba(74, 51, 41, 0.65)), 
+                        url('https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            height: 48vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 24px;
+            margin-top: 65px;
+        }
+
+        .hero h1 {
+            font-size: 54px;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .hero p {
+            font-size: 22px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            font-weight: 400;
+        }
+
+        /* Layout Architecture */
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 24px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-header h2 { 
+            font-size: 38px; 
+            color: var(--forest-green); 
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 30%;
+            width: 40%;
+            height: 3px;
+            background-color: var(--campfire-orange);
+            border-radius: 2px;
+        }
+
+        section {
+            background: var(--white);
+            padding: 45px;
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 50px;
+            border: 1px solid rgba(27, 56, 32, 0.04);
+        }
+
+        /* סקציית פרטי האירוע והסדנאות */
+        .event-highlights {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .highlight-chip {
+            background: var(--forest-light);
+            color: var(--forest-green);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1.5px solid rgba(45, 90, 55, 0.2);
+        }
+
+        .highlight-chip i {
+            color: var(--campfire-orange);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .card {
+            background-color: var(--sandy-bg);
+            padding: 28px;
+            border-radius: 18px;
+            border-top: 5px solid var(--earth-brown);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-top-color: var(--campfire-orange);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--forest-light);
+            color: var(--forest-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin: 0 auto 15px auto;
+            border: 1.5px solid rgba(45, 90, 55, 0.15);
+        }
+
+        .card h3 {
+            color: var(--forest-green);
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* קופסת הרשמה וטופס */
+        .booking-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 35px;
+            background: linear-gradient(135deg, var(--forest-light), #e4ede6);
+            padding: 40px;
+            border-radius: 22px;
+            border: 1px solid rgba(27, 56, 32, 0.08);
+        }
+
+        .price-tag {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: var(--shadow-sm);
+            border-right: 5px solid var(--campfire-orange);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .early-bird-badge {
+            background: var(--campfire-orange);
+            color: var(--white);
+            font-size: 14px;
+            font-weight: bold;
+            padding: 5px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 12px;
+            align-self: flex-start;
+        }
+
+        .price-item { font-size: 20px; font-weight: bold; color: var(--earth-brown); margin-bottom: 8px; }
+        .price-item span { color: var(--campfire-orange); font-size: 28px; }
+
+        .price-anchor-box {
+            background: #fff5f0;
+            border: 2px dashed var(--campfire-orange);
+            padding: 18px;
+            border-radius: 14px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .discount-price-highlight {
+            color: var(--campfire-orange);
+            font-size: 42px;
+            font-weight: 900;
+            display: block;
+            line-height: 1.1;
+            margin-top: 4px;
+        }
+
+        .booking-form { display: flex; flex-direction: column; gap: 16px; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group label { font-weight: 700; color: var(--forest-green); }
+
+        .form-group input, .form-group select { 
+            padding: 13px 16px; 
+            border: 1.5px solid #cdd8cf; 
+            border-radius: 12px; 
+            font-size: 16px; 
+            width: 100%;
+            background: var(--white);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--campfire-orange);
+            box-shadow: 0 0 0 3px rgba(230, 92, 0, 0.15);
+        }
+
+        /* לוח שנה אוקטובר 2026 */
+        .calendar-container {
+            background: var(--white);
+            padding: 16px;
+            border-radius: 16px;
+            border: 1.5px solid #cdd8cf;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            width: 100%;
+        }
+
+        .calendar-header {
+            text-align: center;
+            font-weight: 800;
+            font-size: 17px;
+            color: var(--forest-green);
+            margin-bottom: 12px;
+            background: var(--forest-light);
+            padding: 8px 14px;
+            border-radius: 10px;
+        }
+
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            font-weight: bold;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+        }
+
+        .day-cell {
+            min-height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            border-radius: 8px;
+            background: #f4f6f4;
+            color: #a0aaa2;
+            cursor: not-allowed;
+            user-select: none;
+            font-weight: 600;
+        }
+
+        .day-cell.available {
+            background: #e8f5e9;
+            color: var(--forest-green);
+            font-weight: bold;
+            cursor: pointer;
+            border: 1.5px solid #81c784;
+            transition: var(--transition);
+        }
+
+        .day-cell.available:hover {
+            background: var(--campfire-glow);
+            color: var(--white);
+            border-color: var(--campfire-orange);
+            transform: scale(1.04);
+        }
+
+        .day-cell.selected {
+            background: var(--campfire-orange) !important;
+            color: var(--white) !important;
+            border-color: var(--campfire-orange) !important;
+            box-shadow: 0 3px 10px rgba(230, 92, 0, 0.4);
+            font-weight: 800;
+        }
+
+        .selected-date-banner {
+            margin-top: 14px;
+            background: var(--forest-green);
+            color: var(--white);
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .total-price-box {
+            background: var(--forest-green); 
+            color: var(--white);
+            padding: 16px; 
+            border-radius: 12px; 
+            text-align: center; 
+            font-size: 22px; 
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--campfire-orange), var(--campfire-glow));
+            color: var(--white);
+            padding: 15px 38px;
+            text-decoration: none;
+            font-size: 19px;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: var(--transition);
+            box-shadow: 0 6px 22px rgba(230, 92, 0, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(230, 92, 0, 0.55);
+        }
+
+        /* סרגל קישורים והלוגו במרכז */
+        .social-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            background: rgba(27, 56, 32, 0.04);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px dashed rgba(27, 56, 32, 0.15);
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--white);
+            font-weight: bold;
+            font-size: 16px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+        }
+
+        .social-link i { font-size: 22px; }
+
+        .link-wa { background: linear-gradient(135deg, #25D366, #1eaa53); }
+        .link-fb { background: linear-gradient(135deg, #1877F2, #0d5cb5); }
+
+        .logo-center-box {
+            background: var(--white);
+            padding: 10px 20px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(27, 56, 32, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-center-box img {
+            max-height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Modal תשלום */
+        .payment-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(18, 36, 21, 0.75);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 24px;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px; left: 15px;
+            font-size: 26px; cursor: pointer; color: var(--text-muted);
+            transition: var(--transition);
+        }
+        .close-modal:hover { color: var(--campfire-orange); }
+
+        .payment-options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .pay-option-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: var(--text-dark);
+            background: #f8faf8;
+            font-weight: 700;
+            font-size: 16px;
+            transition: var(--transition);
+            border: 1.5px solid #dce5dd;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .pay-option-btn:hover {
+            background: var(--white);
+            border-color: var(--forest-green);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(27, 56, 32, 0.08);
+        }
+
+        .pay-btn-content {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .pay-btn-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--forest-light);
+            color: var(--forest-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        @media (max-width: 992px) { 
+            .booking-box { grid-template-columns: 1fr; } 
+            section { padding: 30px 20px; }
+        }
+        @media (max-width: 768px) { 
+            .nav-container { flex-direction: column; gap: 12px; } 
+            .hero h1 { font-size: 36px; }
+            .social-bar { flex-direction: column; }
+        }
+
+        footer { 
+            background-color: #0f2112; color: #a3b8a7; text-align: center; 
+            padding: 35px 20px; font-size: 15px; border-top: 4px solid var(--campfire-orange);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="brand-logo">
+                <span class="logo-text">🌿 מדורת השבט</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#workshops">הסדנאות</a></li>
+                    <li><a href="#booking">הרשמה</a></li>
+                    <li>
+                        <a href="https://wa.me/972559914540" target="_blank" style="color: #25D366; font-weight: bold; display: flex; align-items: center; gap: 6px;">
+                            <i class="fab fa-whatsapp" style="font-size: 20px;"></i> 055-9914540
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>סדנאות יצירה בחומרים מהטבע</h1>
+        <p>חוויה יצירתית ומחברת לכל המשפחה – מבוגרים וילדים</p>
+    </div>
+
+    <div class="wrapper">
+
+        <!-- סקציית הסדנאות -->
+        <section id="workshops">
+            <div class="section-header">
+                <h2>מרחב יצירה, טבע וחיבור</h2>
+                <p style="margin-top: 10px; color: var(--text-muted); font-size: 18px;">שלושה ימים של יצירה חופשית בחומרים טבעיים, רוגע והנאה משותפת בידיים.</p>
+            </div>
+
+            <!-- פרטי המפגש הבולטים -->
+            <div class="event-highlights">
+                <div class="highlight-chip">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span><strong>מיקום:</strong> אשדות יעקב מאוחד, בדשא שליד מאפיית ניקה</span>
+                </div>
+                <div class="highlight-chip">
+                    <i class="far fa-clock"></i>
+                    <span><strong>שעות:</strong> 10:00 – 13:00</span>
+                </div>
+                <div class="highlight-chip">
+                    <i class="fas fa-users"></i>
+                    <span><strong>מתאים ל:</strong> מבוגרים וילדים כאחד</span>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-tree"></i></div>
+                    <h3>דמויות יער</h3>
+                    <p>יצירת דמויות, יצורים קסומים ופסלים קטנים מענפים, אצטרובלים, בלוטים, סיבים וחומרים טבעיים שנאספו מהאדמה.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-gem"></i></div>
+                    <h3>תכשיטים מהטבע</h3>
+                    <p>שזירה, חריזה ועיצוב של צמידים, שרשראות וקישוטים ייחודיים מזרעים, חרוזי עץ, צדפים וסיבים טבעיים.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-hands"></i></div>
+                    <h3>פיסול באדמה</h3>
+                    <p>עבודה חושית ומהנה עם אדמה מקומית, בוץ וטקסטורות טבעיות – כל משתתף ומשתתפת מעצבים ולוקחים איתם מזכרת שורשית.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- אזור הרשמה ומחשבון -->
+        <section id="booking">
+            <div class="section-header">
+                <h2>הרשמה מהירה לסדנאות</h2>
+                <p style="margin-top: 10px; color: var(--text-muted); font-size: 18px;">בחרו את המועד המתאים לכם והבטיחו מקום במרחב היצירה</p>
+            </div>
+
+            <div class="booking-box">
+                <div class="price-tag">
+                    <div>
+                        <span class="early-bird-badge">עלות השתתפות</span>
+                        <div class="price-item">מחיר למשתתף: <span>₪50</span> בלבד!</div>
+                        <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 15px;">*המחיר כולל את כל החומרים וההדרכה המקצועית.</p>
+                        
+                        <div class="price-anchor-box">
+                            <span style="font-size: 15px; font-weight: bold; color: var(--text-dark);">סך הכל לתשלום:</span>
+                            <span class="discount-price-highlight" id="calculatedTotalDisplay">₪50</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 style="color: var(--earth-brown); font-size: 15px; font-weight: 700; margin-top: 10px;">מדיניות ביטול:</h4>
+                        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">
+                            • ביטול עד 24 שעות לפני המועד - החזר מלא.<br>
+                            • ביום הפעילות - ניתן להעביר את הזכות למשתתף אחר.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="booking-form">
+                    <h3 style="color: var(--forest-green); font-size: 22px;"><i class="fas fa-user-check"></i> פרטי ההזמנה</h3>
+                    
+                    <div class="form-group">
+                        <label>שם מלא:</label>
+                        <input type="text" id="parentName" placeholder="שם פרטי ומשפחה" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>טלפון נייד:</label>
+                        <input type="tel" id="parentPhone" placeholder="050-0000000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>כתובת מייל:</label>
+                        <input type="email" id="parentEmail" placeholder="example@domain.com" required>
+                    </div>
+
+                    <!-- בחירת מספר משתתפים -->
+                    <div class="form-group">
+                        <label>מספר משתתפים (מבוגרים וילדים):</label>
+                        <select id="participantsCount" onchange="calculateTotal()">
+                            <option value="1" selected>1 משתתף (₪50)</option>
+                            <option value="2">2 משתתפים (₪100)</option>
+                            <option value="3">3 משתתפים (₪150)</option>
+                            <option value="4">4 משתתפים (₪200)</option>
+                            <option value="5">5 משתתפים (₪250)</option>
+                            <option value="6">6 משתתפים (₪300)</option>
+                            <option value="7">7 משתתפים (₪350)</option>
+                            <option value="8">8 משתתפים (₪400)</option>
+                        </select>
+                    </div>
+
+                    <!-- לוח שנה ויזואלי לאוקטובר 2026 -->
+                    <div class="form-group">
+                        <label><i class="far fa-calendar-alt" style="color: var(--campfire-orange);"></i> בחירת יום הפעילות:</label>
+                        <div class="calendar-container">
+                            <div class="calendar-header">אוקטובר 2026</div>
+                            <div class="calendar-weekdays">
+                                <div>א'</div><div>ב'</div><div>ג'</div><div>ד'</div><div>ה'</div><div>ו'</div><div>ש'</div>
+                            </div>
+                            <div class="calendar-days" id="calendarDays">
+                                <!-- הימים יווצרו אוטומטית דרך JS -->
+                            </div>
+                            <div class="selected-date-banner" id="selectedDateBanner">
+                                מועד נבחר: 1.10.2026 (יום חמישי) | 10:00 - 13:00
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="total-price-box">
+                        לתשלום: ₪<span id="totalAmount">50</span>
+                    </div>
+
+                    <button class="btn-submit" onclick="openPaymentModal()" style="width: 100%; justify-content: center; margin-top: 8px;">
+                        בחירת אופן תשלום והרשמה <i class="fas fa-chevron-left"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- סרגל קישורים תחתון והלוגו במרכז -->
+        <div class="social-bar">
+            <a href="https://wa.me/972559914540" target="_blank" class="social-link link-wa">
+                <i class="fab fa-whatsapp"></i>
+                שלחו לנו הודעה ב-WhatsApp
+            </a>
+            
+            <div class="logo-center-box">
+                <img src="logo.png" alt="לוגו מדורת השבט" onerror="this.style.display='none'">
+            </div>
+
+            <a href="https://www.facebook.com/people/%D7%9E%D7%93%D7%95%D7%A8%D7%AA-%D7%94%D7%A9%D7%91%D7%98/61570384501336/?rdid=g4FT6jg3Nbh9YlQb&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1NTxrWHuMP%2F" target="_blank" class="social-link link-fb">
+                <i class="fab fa-facebook-f"></i>
+                עמוד הפייסבוק
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Modal תשלום -->
+    <div id="paymentModal" class="payment-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 style="color: var(--forest-green); font-size: 24px;"><i class="fas fa-shield-alt" style="color: var(--forest-mid);"></i> בחירת אופן תשלום</h2>
+            <p style="margin-top: 8px; font-size: 16px;">
+                סך הכל לתשלום: <strong style="color: var(--campfire-orange); font-size: 24px;">₪<span id="modalTotal">50</span></strong>
+            </p>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">בלחיצה על האפשרות המבוקשת, ייפתח צ'אט WhatsApp עם פרטי ההרשמה לקבלת קישור לתשלום:</p>
+            
+            <div class="payment-options-grid">
+                
+                <button onclick="sendOrderToWhatsApp('העברה בנקאית')" class="pay-option-btn">
+                    <div class="pay-btn-content">
+                        <div class="pay-btn-icon"><i class="fas fa-university"></i></div>
+                        <span> העברה בנקאית </span>
+                    </div>
+                    <i class="fab fa-whatsapp" style="color: #25D366; font-size: 20px;"></i>
+                </button>
+
+                <button onclick="sendOrderToWhatsApp('PayBox')" class="pay-option-btn">
+                    <div class="pay-btn-content">
+                        <div class="pay-btn-icon"><i class="fas fa-box-open"></i></div>
+                        <span> PayBox</span>
+                    </div>
+                    <i class="fab fa-whatsapp" style="color: #25D366; font-size: 20px;"></i>
+                </button>
+
+                <button onclick="sendOrderToWhatsApp('bit')" class="pay-option-btn">
+                    <div class="pay-btn-content">
+                        <div class="pay-btn-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <span> bit</span>
+                    </div>
+                    <i class="fab fa-whatsapp" style="color: #25D366; font-size: 20px;"></i>
+                </button>
+
+                <button onclick="sendOrderToWhatsApp('כרטיס אשראי')" class="pay-option-btn">
+                    <div class="pay-btn-content">
+                        <div class="pay-btn-icon"><i class="far fa-credit-card"></i></div>
+                        <span> תשלום בכרטיס אשראי</span>
+                    </div>
+                    <i class="fab fa-whatsapp" style="color: #25D366; font-size: 20px;"></i>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const MY_WHATSAPP_NUMBER = "972559914540"; 
+        let selectedDateText = "1.10.2026 (יום חמישי) | 10:00 - 13:00";
+
+        // יצירת לוח שנה לאוקטובר 2026
+        function renderOctoberCalendar() {
+            const container = document.getElementById('calendarDays');
+            container.innerHTML = '';
+
+            // אוקטובר 2026 מתחיל ביום חמישי (4 תאים ריקים: א', ב', ג', ד')
+            for (let i = 0; i < 4; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.className = 'day-cell';
+                emptyCell.style.background = 'transparent';
+                container.appendChild(emptyCell);
+            }
+
+            for (let day = 1; day <= 31; day++) {
+                const dayCell = document.createElement('div');
+                dayCell.className = 'day-cell';
+                dayCell.innerText = day;
+                dayCell.id = `day-${day}`;
+
+                // 1, 2, 3 לאוקטובר
+                if (day === 1) {
+                    dayCell.classList.add('available', 'selected');
+                    dayCell.onclick = () => selectDate("1.10.2026 (יום חמישי) | 10:00 - 13:00", 1);
+                } else if (day === 2) {
+                    dayCell.classList.add('available');
+                    dayCell.onclick = () => selectDate("2.10.2026 (יום שישי) | 10:00 - 13:00", 2);
+                } else if (day === 3) {
+                    dayCell.classList.add('available');
+                    dayCell.onclick = () => selectDate("3.10.2026 (יום שבת) | 10:00 - 13:00", 3);
+                }
+
+                container.appendChild(dayCell);
+            }
+        }
+
+        function selectDate(dateText, dayNum) {
+            selectedDateText = dateText;
+
+            // ניקוי סימונים קודמים
+            document.querySelectorAll('.day-cell').forEach(cell => cell.classList.remove('selected'));
+
+            // סימון היום הנבחר
+            const selectedCell = document.getElementById(`day-${dayNum}`);
+            if (selectedCell) selectedCell.classList.add('selected');
+
+            document.getElementById('selectedDateBanner').innerText = `מועד נבחר: ${dateText}`;
+        }
+
+        function calculateTotal() {
+            const count = parseInt(document.getElementById('participantsCount').value);
+            const total = count * 50;
+
+            document.getElementById('calculatedTotalDisplay').innerText = `₪${total}`;
+            document.getElementById('totalAmount').innerText = total;
+        }
+
+        function openPaymentModal() {
+            const name = document.getElementById('parentName').value.trim();
+            const phone = document.getElementById('parentPhone').value.trim();
+            const email = document.getElementById('parentEmail').value.trim();
+            const total = document.getElementById('totalAmount').innerText;
+
+            if(!name || !phone || !email) {
+                alert('אנא מלאו שם מלא, טלפון נייד וכתובת מייל כדי להמשיך להרשמה.');
+                return;
+            }
+
+            document.getElementById('modalTotal').innerText = total;
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
+
+        function sendOrderToWhatsApp(paymentMethod) {
+            const name = document.getElementById('parentName').value.trim();
+            const phone = document.getElementById('parentPhone').value.trim();
+            const email = document.getElementById('parentEmail').value.trim();
+            const count = document.getElementById('participantsCount').value;
+            const total = document.getElementById('totalAmount').innerText;
+
+            const message = `שלום! נרשמתי לסדנאות היצירה בטבע באשדות יעקב:%0A%0A` +
+                            `שם מלא: ${name}%0A` +
+                            `טלפון: ${phone}%0A` +
+                            `מייל: ${email}%0A` +
+                            `מועד נבחר: ${selectedDateText}%0A` +
+                            `מספר משתתפים: ${count}%0A` +
+                            `מיקום: אשדות יעקב מאוחד (בדשא ליד מאפיית ניקה)%0A` +
+                            `סך הכל לתשלום: ₪${total}%0A` +
+                            `אופן תשלום מבוקש: ${paymentMethod}%0A%0A` +
+                            `אשמח לקבל קישור לתשלום לאישור ההרשמה. תודה!`;
+
+            const waUrl = `https://wa.me/${MY_WHATSAPP_NUMBER}?text=${message}`;
+            
+            window.open(waUrl, '_blank');
+            closeModal();
+        }
+
+        function closeModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        window.onload = function() {
+            renderOctoberCalendar();
+            calculateTotal();
+        };
+    </script>
+
+    <footer>
+        <p>מדורת השבט | סדנאות יצירה בחומרים מהטבע וחוויות חיבור</p>
+        <p style="font-size: 12px; color: #6a826f; margin-top: 5px;">טלפון ליצירת קשר: 055-9914540 | אשדות יעקב מאוחד</p>
+    </footer>
+
+</body>
+</html>
