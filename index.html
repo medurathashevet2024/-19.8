@@ -106,7 +106,7 @@
         .hero {
             position: relative;
             background: linear-gradient(rgba(27, 56, 32, 0.55), rgba(74, 51, 41, 0.65)), 
-                        url('https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+                        url('yarid.jpeg') no-repeat center center/cover;
             height: 48vh;
             display: flex;
             flex-direction: column;
@@ -281,24 +281,6 @@
 
         .price-item { font-size: 20px; font-weight: bold; color: var(--earth-brown); margin-bottom: 8px; }
         .price-item span { color: var(--campfire-orange); font-size: 28px; }
-
-        .price-anchor-box {
-            background: #fff5f0;
-            border: 2px dashed var(--campfire-orange);
-            padding: 18px;
-            border-radius: 14px;
-            margin: 15px 0;
-            text-align: center;
-        }
-
-        .discount-price-highlight {
-            color: var(--campfire-orange);
-            font-size: 42px;
-            font-weight: 900;
-            display: block;
-            line-height: 1.1;
-            margin-top: 4px;
-        }
 
         .booking-form { display: flex; flex-direction: column; gap: 16px; }
         .form-group { display: flex; flex-direction: column; gap: 6px; }
@@ -625,7 +607,7 @@
         <section id="workshops">
             <div class="section-header">
                 <h2>מרחב יצירה, טבע וחיבור</h2>
-                <p style="margin-top: 10px; color: var(--text-muted); font-size: 18px;">שלושה ימים של יצירה חופשית בחומרים טבעיים, רוגע והנאה משותפת בידיים.</p>
+                <p style="margin-top: 10px; color: var(--text-muted); font-size: 18px;">שלושה ימים של סדנאות יצירה וחיבור לטבע.</p>
             </div>
 
             <!-- פרטי המפגש הבולטים -->
@@ -648,12 +630,12 @@
                 <div class="card">
                     <div class="card-icon"><i class="fas fa-tree"></i></div>
                     <h3>דמויות יער</h3>
-                    <p>יצירת דמויות, יצורים קסומים ופסלים קטנים מענפים, אצטרובלים, בלוטים, סיבים וחומרים טבעיים שנאספו מהאדמה.</p>
+                    <p>יצירת דמויות ויצורים קסומים מענפים, אצטרובלים, בלוטים, סיבים וחומרים טבעיים שנאספו מהאדמה.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon"><i class="fas fa-gem"></i></div>
                     <h3>תכשיטים מהטבע</h3>
-                    <p>שזירה, חריזה ועיצוב של צמידים, שרשראות וקישוטים ייחודיים מזרעים, חרוזי עץ, צדפים וסיבים טבעיים.</p>
+                    <p>שזירה, חריזה ועיצוב של צמידים, שרשראות וקישוטים ייחודיים מזרעים וחומרי טבע.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon"><i class="fas fa-hands"></i></div>
@@ -674,17 +656,12 @@
                 <div class="price-tag">
                     <div>
                         <span class="early-bird-badge">עלות השתתפות</span>
-                        <div class="price-item">מחיר למשתתף: <span>₪50</span> בלבד!</div>
-                        <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 15px;">*המחיר כולל את כל החומרים וההדרכה המקצועית.</p>
-                        
-                        <div class="price-anchor-box">
-                            <span style="font-size: 15px; font-weight: bold; color: var(--text-dark);">סך הכל לתשלום:</span>
-                            <span class="discount-price-highlight" id="calculatedTotalDisplay">₪50</span>
-                        </div>
+                        <div class="price-item">מחיר למשתתף: <span>₪50</span> בלבד</div>
+                        <p style="font-size: 14px; color: var(--text-muted); margin-top: 10px;">*המחיר כולל את כל החומרים וההדרכה המקצועית.</p>
                     </div>
 
                     <div>
-                        <h4 style="color: var(--earth-brown); font-size: 15px; font-weight: 700; margin-top: 10px;">מדיניות ביטול:</h4>
+                        <h4 style="color: var(--earth-brown); font-size: 15px; font-weight: 700; margin-top: 20px;">מדיניות ביטול:</h4>
                         <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">
                             • ביטול עד 24 שעות לפני המועד - החזר מלא.<br>
                             • ביום הפעילות - ניתן להעביר את הזכות למשתתף אחר.
@@ -761,7 +738,7 @@
             </a>
             
             <div class="logo-center-box">
-                <img src="logo.png" alt="לוגו מדורת השבט" onerror="this.style.display='none'">
+                <img src="LOGO.PNG" alt="לוגו מדורת השבט" onerror="this.style.display='none'">
             </div>
 
             <a href="https://www.facebook.com/people/%D7%9E%D7%93%D7%95%D7%A8%D7%AA-%D7%94%D7%A9%D7%91%D7%98/61570384501336/?rdid=g4FT6jg3Nbh9YlQb&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1NTxrWHuMP%2F" target="_blank" class="social-link link-fb">
@@ -829,7 +806,7 @@
             const container = document.getElementById('calendarDays');
             container.innerHTML = '';
 
-            // אוקטובר 2026 מתחיל ביום חמישי (4 תאים ריקים: א', ב', ג', ד')
+            // אוקטובר 2026 מתחיל ביום חמישי (4 תאים ריקים)
             for (let i = 0; i < 4; i++) {
                 const emptyCell = document.createElement('div');
                 emptyCell.className = 'day-cell';
@@ -876,7 +853,6 @@
             const count = parseInt(document.getElementById('participantsCount').value);
             const total = count * 50;
 
-            document.getElementById('calculatedTotalDisplay').innerText = `₪${total}`;
             document.getElementById('totalAmount').innerText = total;
         }
 
