@@ -102,13 +102,13 @@
 
         nav a:hover { color: var(--white); }
 
-        /* Hero Section - מותאם ומרווח לתמונה מלאה */
+        /* Hero Section */
         .hero {
             position: relative;
             background: linear-gradient(rgba(27, 56, 32, 0.45), rgba(74, 51, 41, 0.55)), 
                         url('yarid.jpeg') no-repeat center center/cover;
-            min-height: 520px;
-            height: 65vh;
+            min-height: 500px;
+            height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -120,13 +120,13 @@
         }
 
         .hero h1 {
-            font-size: 54px;
+            font-size: 52px;
             margin-bottom: 12px;
             text-shadow: 0 4px 18px rgba(0,0,0,0.6);
         }
 
         .hero p {
-            font-size: 23px;
+            font-size: 22px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
             font-weight: 400;
         }
@@ -170,7 +170,7 @@
             border: 1px solid rgba(27, 56, 32, 0.04);
         }
 
-        /* סקציית פרטי האירוע והסדנאות */
+        /* סקציית פרטי המפגש */
         .event-highlights {
             display: flex;
             justify-content: center;
@@ -303,7 +303,7 @@
             box-shadow: 0 0 0 3px rgba(230, 92, 0, 0.15);
         }
 
-        /* לוח שנה אוקטובר 2026 */
+        /* לוח שנה מעודכן עם חצים */
         .calendar-container {
             background: var(--white);
             padding: 16px;
@@ -314,7 +314,9 @@
         }
 
         .calendar-header {
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-weight: 800;
             font-size: 17px;
             color: var(--forest-green);
@@ -322,6 +324,26 @@
             background: var(--forest-light);
             padding: 8px 14px;
             border-radius: 10px;
+        }
+
+        .cal-nav-btn {
+            background: var(--forest-green);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            padding: 6px 14px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .cal-nav-btn:hover {
+            background: var(--campfire-orange);
+            transform: scale(1.04);
         }
 
         .calendar-weekdays {
@@ -566,8 +588,8 @@
         }
         @media (max-width: 768px) { 
             .nav-container { flex-direction: column; gap: 12px; } 
-            .hero { min-height: 420px; height: 50vh; }
-            .hero h1 { font-size: 36px; }
+            .hero { min-height: 400px; height: 50vh; }
+            .hero h1 { font-size: 34px; }
             .social-bar { flex-direction: column; }
         }
 
@@ -609,7 +631,7 @@
         <section id="workshops">
             <div class="section-header">
                 <h2>מרחב יצירה, טבע וחיבור</h2>
-                <p style="margin-top: 10px; color: var(--text-muted); font-size: 18px;">שלושה ימים של יצירה בחומרים טבעיים, רוגע, הנאה וחיבור לטבע.</p>
+                <p style="margin-top: 10px; color: var(--text-muted); font-size: 18px;">סדנאות יצירה וחיבור לטבע באשדות יעקב מאוחד.</p>
             </div>
 
             <!-- פרטי המפגש הבולטים -->
@@ -620,7 +642,7 @@
                 </div>
                 <div class="highlight-chip">
                     <i class="far fa-clock"></i>
-                    <span><strong>שעות:</strong> 10:00 – 13:00</span>
+                    <span id="headerHoursChip"><strong>שעות:</strong> 19:00 בערב (יריד 19.8) / 10:00 - 13:00 (אוקטובר)</span>
                 </div>
                 <div class="highlight-chip">
                     <i class="fas fa-users"></i>
@@ -651,15 +673,15 @@
         <section id="booking">
             <div class="section-header">
                 <h2>הרשמה מהירה לסדנאות</h2>
-                <p style="margin-top: 10px; color: var(--text-muted); font-size: 18px;">בחרו את המועד המתאים לכם והבטיחו מקום במרחב היצירה</p>
+                <p style="margin-top: 10px; color: var(--text-muted); font-size: 18px;">בחרו את המועד הרצוי והבטיחו מקום במרחב היצירה</p>
             </div>
 
             <div class="booking-box">
                 <div class="price-tag">
                     <div>
-                        <span class="early-bird-badge">עלות השתתפות</span>
-                        <div class="price-item">מחיר למשתתף: <span>₪50</span> בלבד</div>
-                        <p style="font-size: 14px; color: var(--text-muted); margin-top: 10px;">*המחיר כולל את כל החומרים וההדרכה המקצועית.</p>
+                        <span class="early-bird-badge" id="pricingBadge">יריד ערב באשדות יעקב</span>
+                        <div class="price-item" id="pricePerPersonText">מחיר לסדנה: <span>₪30</span> בלבד</div>
+                        <p style="font-size: 14px; color: var(--text-muted); margin-top: 10px;" id="priceSubNote">*מחיר מיוחד ליריד ערב 19.8 (₪30 לסדנה). בסוכות 1-3.10: ₪50 למשתתף.</p>
                     </div>
 
                     <div>
@@ -689,26 +711,30 @@
                         <input type="email" id="parentEmail" placeholder="example@domain.com" required>
                     </div>
 
-                    <!-- בחירת מספר משתתפים -->
+                    <!-- בחירת מספר משתתפים / סדנאות -->
                     <div class="form-group">
-                        <label>מספר משתתפים (מבוגרים וילדים):</label>
+                        <label id="participantsLabel">מספר סדנאות / משתתפים:</label>
                         <select id="participantsCount" onchange="calculateTotal()">
-                            <option value="1" selected>1 משתתף (₪50)</option>
-                            <option value="2">2 משתתפים (₪100)</option>
-                            <option value="3">3 משתתפים (₪150)</option>
-                            <option value="4">4 משתתפים (₪200)</option>
-                            <option value="5">5 משתתפים (₪250)</option>
-                            <option value="6">6 משתתפים (₪300)</option>
-                            <option value="7">7 משתתפים (₪350)</option>
-                            <option value="8">8 משתתפים (₪400)</option>
+                            <option value="1" selected>1 משתתף / סדנה</option>
+                            <option value="2">2 משתתפים / סדנאות</option>
+                            <option value="3">3 משתתפים / סדנאות</option>
+                            <option value="4">4 משתתפים / סדנאות</option>
+                            <option value="5">5 משתתפים / סדנאות</option>
+                            <option value="6">6 משתתפים / סדנאות</option>
+                            <option value="7">7 משתתפים / סדנאות</option>
+                            <option value="8">8 משתתפים / סדנאות</option>
                         </select>
                     </div>
 
-                    <!-- לוח שנה ויזואלי לאוקטובר 2026 -->
+                    <!-- לוח שנה עם חצים למעבר בין אוגוסט לאוקטובר -->
                     <div class="form-group">
                         <label><i class="far fa-calendar-alt" style="color: var(--campfire-orange);"></i> בחירת יום הפעילות:</label>
                         <div class="calendar-container">
-                            <div class="calendar-header">אוקטובר 2026</div>
+                            <div class="calendar-header">
+                                <button type="button" class="cal-nav-btn" onclick="prevMonth()"><i class="fas fa-chevron-right"></i> לחודש אוגוסט</button>
+                                <span id="calendarMonthTitle">אוגוסט 2026</span>
+                                <button type="button" class="cal-nav-btn" onclick="nextMonth()">לחודש אוקטובר <i class="fas fa-chevron-left"></i></button>
+                            </div>
                             <div class="calendar-weekdays">
                                 <div>א'</div><div>ב'</div><div>ג'</div><div>ד'</div><div>ה'</div><div>ו'</div><div>ש'</div>
                             </div>
@@ -716,13 +742,13 @@
                                 <!-- הימים יווצרו אוטומטית דרך JS -->
                             </div>
                             <div class="selected-date-banner" id="selectedDateBanner">
-                                מועד נבחר: 1.10.2026 (יום חמישי) | 10:00 - 13:00
+                                מועד נבחר: 19.8.2026 (יום רביעי) | יריד ערב בשעה 19:00 (₪30 לסדנה)
                             </div>
                         </div>
                     </div>
 
                     <div class="total-price-box">
-                        לתשלום: ₪<span id="totalAmount">50</span>
+                        לתשלום: ₪<span id="totalAmount">30</span>
                     </div>
 
                     <button class="btn-submit" onclick="openPaymentModal()" style="width: 100%; justify-content: center; margin-top: 8px;">
@@ -757,7 +783,7 @@
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <h2 style="color: var(--forest-green); font-size: 24px;"><i class="fas fa-shield-alt" style="color: var(--forest-mid);"></i> בחירת אופן תשלום</h2>
             <p style="margin-top: 8px; font-size: 16px;">
-                סך הכל לתשלום: <strong style="color: var(--campfire-orange); font-size: 24px;">₪<span id="modalTotal">50</span></strong>
+                סך הכל לתשלום: <strong style="color: var(--campfire-orange); font-size: 24px;">₪<span id="modalTotal">30</span></strong>
             </p>
             <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">בלחיצה על האפשרות המבוקשת, ייפתח צ'אט WhatsApp עם פרטי ההרשמה לקבלת קישור לתשלום:</p>
             
@@ -801,59 +827,113 @@
 
     <script>
         const MY_WHATSAPP_NUMBER = "972559914540"; 
-        let selectedDateText = "1.10.2026 (יום חמישי) | 10:00 - 13:00";
+        let currentMonth = 8; // 8 = אוגוסט (ברירת מחדל), 10 = אוקטובר
+        let currentPricePerUnit = 30; // 30 ש"ח באוגוסט, 50 ש"ח באוקטובר
+        let selectedDateText = "19.8.2026 (יום רביעי) | יריד ערב בשעה 19:00";
 
-        // יצירת לוח שנה לאוקטובר 2026
-        function renderOctoberCalendar() {
-            const container = document.getElementById('calendarDays');
-            container.innerHTML = '';
-
-            // אוקטובר 2026 מתחיל ביום חמישי (4 תאים ריקים: א', ב', ג', ד')
-            for (let i = 0; i < 4; i++) {
-                const emptyCell = document.createElement('div');
-                emptyCell.className = 'day-cell';
-                emptyCell.style.background = 'transparent';
-                container.appendChild(emptyCell);
-            }
-
-            for (let day = 1; day <= 31; day++) {
-                const dayCell = document.createElement('div');
-                dayCell.className = 'day-cell';
-                dayCell.innerText = day;
-                dayCell.id = `day-${day}`;
-
-                // 1, 2, 3 לאוקטובר
-                if (day === 1) {
-                    dayCell.classList.add('available', 'selected');
-                    dayCell.onclick = () => selectDate("1.10.2026 (יום חמישי) | 10:00 - 13:00", 1);
-                } else if (day === 2) {
-                    dayCell.classList.add('available');
-                    dayCell.onclick = () => selectDate("2.10.2026 (יום שישי) | 10:00 - 13:00", 2);
-                } else if (day === 3) {
-                    dayCell.classList.add('available');
-                    dayCell.onclick = () => selectDate("3.10.2026 (יום שבת) | 10:00 - 13:00", 3);
-                }
-
-                container.appendChild(dayCell);
-            }
+        function prevMonth() {
+            currentMonth = 8;
+            renderCalendar();
         }
 
-        function selectDate(dateText, dayNum) {
+        function nextMonth() {
+            currentMonth = 10;
+            renderCalendar();
+        }
+
+        function renderCalendar() {
+            const container = document.getElementById('calendarDays');
+            const title = document.getElementById('calendarMonthTitle');
+            container.innerHTML = '';
+
+            if (currentMonth === 8) {
+                title.innerText = "אוגוסט 2026";
+                currentPricePerUnit = 30;
+                document.getElementById('pricingBadge').innerText = "יריד ערב באשדות יעקב";
+                document.getElementById('pricePerPersonText').innerHTML = "מחיר לסדנה: <span>₪30</span> בלבד";
+
+                // אוגוסט 2026 מתחיל ביום שבת (6 תאים ריקים)
+                for (let i = 0; i < 6; i++) {
+                    const emptyCell = document.createElement('div');
+                    emptyCell.className = 'day-cell';
+                    emptyCell.style.background = 'transparent';
+                    container.appendChild(emptyCell);
+                }
+
+                for (let day = 1; day <= 31; day++) {
+                    const dayCell = document.createElement('div');
+                    dayCell.className = 'day-cell';
+                    dayCell.innerText = day;
+                    dayCell.id = `day-8-${day}`;
+
+                    if (day === 19) {
+                        dayCell.classList.add('available', 'selected');
+                        dayCell.onclick = () => selectDate("19.8.2026 (יום רביעי) | יריד ערב בשעה 19:00", 19, 8, 30);
+                    }
+
+                    container.appendChild(dayCell);
+                }
+
+                selectDate("19.8.2026 (יום רביעי) | יריד ערב בשעה 19:00", 19, 8, 30);
+
+            } else {
+                title.innerText = "אוקטובר 2026";
+                currentPricePerUnit = 50;
+                document.getElementById('pricingBadge').innerText = "סדנאות סוכות באשדות יעקב";
+                document.getElementById('pricePerPersonText').innerHTML = "מחיר למשתתף: <span>₪50</span> בלבד";
+
+                // אוקטובר 2026 מתחיל ביום חמישי (4 תאים ריקים)
+                for (let i = 0; i < 4; i++) {
+                    const emptyCell = document.createElement('div');
+                    emptyCell.className = 'day-cell';
+                    emptyCell.style.background = 'transparent';
+                    container.appendChild(emptyCell);
+                }
+
+                for (let day = 1; day <= 31; day++) {
+                    const dayCell = document.createElement('div');
+                    dayCell.className = 'day-cell';
+                    dayCell.innerText = day;
+                    dayCell.id = `day-10-${day}`;
+
+                    if (day === 1) {
+                        dayCell.classList.add('available', 'selected');
+                        dayCell.onclick = () => selectDate("1.10.2026 (יום חמישי) | 10:00 - 13:00", 1, 10, 50);
+                    } else if (day === 2) {
+                        dayCell.classList.add('available');
+                        dayCell.onclick = () => selectDate("2.10.2026 (יום שישי) | 10:00 - 13:00", 2, 10, 50);
+                    } else if (day === 3) {
+                        dayCell.classList.add('available');
+                        dayCell.onclick = () => selectDate("3.10.2026 (יום שבת) | 10:00 - 13:00", 3, 10, 50);
+                    }
+
+                    container.appendChild(dayCell);
+                }
+
+                selectDate("1.10.2026 (יום חמישי) | 10:00 - 13:00", 1, 10, 50);
+            }
+
+            calculateTotal();
+        }
+
+        function selectDate(dateText, dayNum, month, price) {
             selectedDateText = dateText;
+            currentPricePerUnit = price;
 
             // ניקוי סימונים קודמים
             document.querySelectorAll('.day-cell').forEach(cell => cell.classList.remove('selected'));
 
             // סימון היום הנבחר
-            const selectedCell = document.getElementById(`day-${dayNum}`);
+            const selectedCell = document.getElementById(`day-${month}-${dayNum}`);
             if (selectedCell) selectedCell.classList.add('selected');
 
-            document.getElementById('selectedDateBanner').innerText = `מועד נבחר: ${dateText}`;
+            document.getElementById('selectedDateBanner').innerText = `מועד נבחר: ${dateText} (₪${price} למשתתף/סדנה)`;
+            calculateTotal();
         }
 
         function calculateTotal() {
             const count = parseInt(document.getElementById('participantsCount').value);
-            const total = count * 50;
+            const total = count * currentPricePerUnit;
 
             document.getElementById('totalAmount').innerText = total;
         }
@@ -885,7 +965,7 @@
                             `טלפון: ${phone}%0A` +
                             `מייל: ${email}%0A` +
                             `מועד נבחר: ${selectedDateText}%0A` +
-                            `מספר משתתפים: ${count}%0A` +
+                            `כמות סדנאות / משתתפים: ${count}%0A` +
                             `מיקום: אשדות יעקב מאוחד (בדשא ליד מאפיית ניקה)%0A` +
                             `סך הכל לתשלום: ₪${total}%0A` +
                             `אופן תשלום מבוקש: ${paymentMethod}%0A%0A` +
@@ -902,8 +982,7 @@
         }
 
         window.onload = function() {
-            renderOctoberCalendar();
-            calculateTotal();
+            renderCalendar();
         };
     </script>
 
